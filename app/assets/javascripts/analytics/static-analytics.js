@@ -125,7 +125,7 @@
   };
 
   StaticAnalytics.prototype.stripPII = function (value) {
-    return this.analytics.stripPII(value)
+    return this.analytics.stripPII.stripPII(value)
   }
 
   function getOptionsFromCookie() {
