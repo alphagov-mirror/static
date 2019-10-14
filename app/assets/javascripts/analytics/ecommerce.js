@@ -4,6 +4,7 @@
   window.GOVUK = window.GOVUK || {};
 
   var DEFAULT_LIST_TITLE = 'Site search results';
+  var DEFAULT_TRACK_CLICK_LABEL = 'Results';
 
   var Ecommerce = function (config) {
     this.init = function (element) {
@@ -13,6 +14,7 @@
       var ecommerceRows = element.find('[data-ecommerce-row]');
       var startPosition = parseInt(element.data('ecommerce-start-index'), 10);
       var listTitle     = element.data('list-title') || DEFAULT_LIST_TITLE;
+      var trackClickLabel = element.data('track-click-label') || DEFAULT_TRACK_CLICK_LABEL;
 
       ecommerceRows.each(function(index, ecommerceRow) {
         var $ecommerceRow = $(ecommerceRow);
@@ -21,7 +23,7 @@
           path = $ecommerceRow.attr('data-ecommerce-path');
 
         addImpression(contentId, path, index + startPosition, searchQuery, listTitle);
-        trackProductOnClick($ecommerceRow, contentId, path, index + startPosition, searchQuery, listTitle);
+        trackProductOnClick($ecommerceRow, contentId, path, index + startPosition, searchQuery, listTitle, trackClickLabel);
       });
     }
 
@@ -36,7 +38,7 @@
       });
     }
 
-    function trackProductOnClick (row, contentId, path, position, searchQuery, listTitle) {
+    function trackProductOnClick (row, contentId, path, position, searchQuery, listTitle, trackClickLabel) {
       row.click(function(event) {
         ga('ec:addProduct', {
           id: contentId || path,
@@ -46,7 +48,7 @@
 
         ga('ec:setAction', 'click', {list: listTitle});
         GOVUK.analytics.trackEvent('UX', 'click',
-          GOVUK.CustomDimensions.getAndExtendDefaultTrackingOptions({label: 'Results'})
+          GOVUK.CustomDimensions.getAndExtendDefaultTrackingOptions({label: trackClickLabel})
         );
       });
     }
