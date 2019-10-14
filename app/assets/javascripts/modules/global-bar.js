@@ -10,7 +10,10 @@
   Modules.GlobalBar = function() {
     this.start = function($el) {
       var GLOBAL_BAR_SEEN_COOKIE = "global_bar_seen",
+          current_cookie_version = GOVUK.getCookie(GLOBAL_BAR_SEEN_COOKIE),
           count = viewCount();
+
+      console.log("CURRENT COOKIE VERSION AT START: " + current_cookie_version);
 
       $el.on('click', '.dismiss', hide);
       $el.on('click', '.js-call-to-action', handleCallToActionClick);

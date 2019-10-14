@@ -7,7 +7,84 @@
 <% if show_global_bar %>
   <% content_for :head do %>
     <!--[if gt IE 7]><!-->
-    <script>!function(t){"use strict";function e(){return!/^\/register-to-vote|^\/done|^\/brexit|^\/get-ready-brexit-check/.test(window.location.pathname)}function n(){var e=t.cookie.match("(?:^|[ ;])global_bar_seen=([0-9]+)");return e?parseInt(e.pop(),10)<3:!0}var o=t.documentElement;e()&&n()&&(o.className=o.className.concat(" show-global-bar"))}(document);</script>
+    <script>
+      COOKIE_VERSION = 1;
+
+    ! function(t, version=COOKIE_VERSION) {
+
+    console.log("COOKIE VERSION: " + version);
+
+
+  function isOldStyleCookie(cookie) {
+    console.log("checking for old style cookie");
+    var currentCookieValue = JSON.parse(cookie)
+    if (currentCookieValue["version"] === undefined) {
+      console.log("cookie version is not set (is old style)");
+      return true;
+    } else {
+      console.log("cookie version is new style already!");
+      return false
+    }
+  }
+
+  function isOldVersion(cookie_version) {
+    console.log("checking for old version");
+
+    console.log("cookie version: " + cookie_version)
+    console.log("version: " + version)
+
+    console.log("The versions don't match: " + (cookie_version !== version));
+    return cookie_version !== version
+  }
+
+  function forceNewCookie() {
+    // Replace out-of-date cookie with placeholder new version
+    var newExpiry = new Date(Date.now() + 24*60*60*84*1000).toUTCString();
+
+    console.log("Setting cookie expiry to: " + newExpiry);
+    console.log("THE COOKIE VERSION SHOULD BE SET TO: " + version);
+    document.cookie = 'global_bar_seen={"count":0,"version":' + version + '}; expires=' + newExpiry + ';';
+  }
+
+
+    function e() {
+        return !/^\/register-to-vote|^\/done|^\/brexit|^\/get-ready-brexit-check/.test(window.location.pathname)
+    }
+
+    function n() {
+      var currentCookie = document.cookie.match("(?:^|[ ;])(?:global_bar_seen=)(.+?)(?:(?=;|$))");
+      var result = false;
+
+      console.log("THIS IS THE NEW LATEST VERSION OF THE LOGIC");
+
+      // If the user has no global_bar_seen cookie yet
+      if (currentCookie === null) {
+        console.log("Current Cookie does not exist");
+        forceNewCookie();
+        result = true;
+      }
+      else if (isOldStyleCookie(currentCookie[1]) || isOldVersion(JSON.parse(currentCookie[1])["version"])) {
+        // If the user has an 'old style cookie', i.e: before the versioning was implemented
+        // or if the version is not up to date, i.e: we want to force a new version to show
+        console.log("Current Cookie full value: " + currentCookie[1]);
+        console.log("Replacing out-of-date cookie....");
+        forceNewCookie();
+        result = true;
+      } else {
+        currentCookie = JSON.parse(currentCookie[1]);
+        console.log("Current cookie count: " + currentCookie["count"])
+
+        console.log("Do we want to show the banner? " + (parseInt(currentCookie["count"], 10) < 3))
+        result = parseInt(currentCookie["count"], 10) < 3
+      }
+
+      return result;
+    }
+
+    var o = t.documentElement;
+    e() && n() && (o.className = o.className.concat(" show-global-bar"))
+}(document);
+    </script>
     <!--<![endif]-->
   <% end %>
   <!--[if gt IE 7]><!-->
