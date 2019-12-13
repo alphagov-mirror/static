@@ -1,3 +1,6 @@
+$govuk-compatibility-govuktemplate: true;
+@import "govuk_publishing_components/all_components";
+
 /* govuk_frontend_toolkit includes */
 @import "colours";
 @import "conditionals";
