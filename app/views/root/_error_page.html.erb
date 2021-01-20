@@ -15,7 +15,10 @@
   <main id="content" role="main" class="govuk-main-wrapper govuk-main-wrapper--l">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-l"><%= heading %></h1>
+        <%= render "govuk_publishing_components/components/title", {
+          title: heading,
+          margin_top: 0,
+        } %>
         <%= raw intro %>
         <p class="govuk-body">You can <a class="govuk-link" href="/coronavirus">find coronavirus information</a> on GOV.UK.</p>
         <br/>
