@@ -1,10 +1,10 @@
 <%
   show_global_bar ||= true # Toggles the appearance of the global bar
 
-  title = false
-  title_href = false
-  link_text = false
-  link_href = false
+  title = "This is a title"
+  title_href = "https://example.com"
+  link_text = "This is a link"
+  link_href = "https://example.com/link"
 
   coronavirus_title = "Coronavirus (COVID-19)"
   coronavirus_href = "/coronavirus"
@@ -19,7 +19,7 @@
   # Regardless of value, banner is always manually dismissable by users
   always_visible = true
 
-  show_additional_banner = false
+  show_additional_banner = true
 
   global_bar_classes = %w(global-bar dont-print)
 
@@ -27,7 +27,7 @@
   title_classes << "js-call-to-action" if title_href
   title_classes << "govuk-link" if title_href
 
-  dismiss_classes = %w(global-bar__dismiss global-bar__dismiss--show dismiss)
+  dismiss_classes = %w(global-bar__dismiss global-bar__dismiss--show dismiss notable-death)
   dismiss_classes << "govuk-link"
 -%>
 

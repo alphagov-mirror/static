@@ -1,7 +1,8 @@
+/* global parseCookie GOVUK */
+/* eslint-disable no-var */
+
 //= require libs/GlobalBarHelper.js
 //= require govuk_publishing_components/lib/cookie-functions
-
-/* global parseCookie */
 
 'use strict'
 window.GOVUK = window.GOVUK || {}

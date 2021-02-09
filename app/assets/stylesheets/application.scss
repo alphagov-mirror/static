@@ -1,0 +1,14 @@
+// This is the file that the application needs to include in order to use
+// the components.
+@import 'govuk_publishing_components/govuk_frontend_support';
+@import 'govuk_publishing_components/component_support';
+
+@import "govuk_publishing_components/components/button";
+@import "govuk_publishing_components/components/cookie-banner";
+@import "govuk_publishing_components/components/feedback";
+@import "govuk_publishing_components/components/layout-footer";
+@import "govuk_publishing_components/components/layout-header";
+@import "govuk_publishing_components/components/skip-link";
+@import "govuk_publishing_components/components/action-link";
+
+@import "helpers/global-bar";

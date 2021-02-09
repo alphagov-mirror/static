@@ -1,15 +1,11 @@
 .govuk-emergency-banner {
-  background-color: $panel-colour;
-  color: $white;
+  background-color: govuk-colour("mid-grey");
+  color: govuk-colour("white");
   margin-top: 2px;
   padding: govuk-spacing(3) 0;
 
   @include govuk-media-query($from: tablet) {
     padding: govuk-spacing(6) 0;
-  }
-
-  div {
-    @extend %site-width-container;
   }
 
   h2 {
@@ -26,7 +22,7 @@
 
   p {
     @include govuk-font(19);
-    color: $white;
+    color: govuk-colour("white");
     margin-top: 0;
     margin-bottom: govuk-spacing(4);
 
@@ -46,16 +42,16 @@
   a {
     &:link,
     &:visited {
-      color: $white;
+      color: govuk-colour("white");
     }
 
     &:active,
     &:hover {
-      color: darken($white, 20%);
+      color: darken(govuk-colour("white"), 20%);
     }
 
     &:focus {
-      color: $black;
+      color: $govuk-focus-text-colour;
     }
   }
 
@@ -65,14 +61,14 @@
   }
 
   &.notable-death {
-    background-color: $black;
+    background-color: govuk-colour("black");
   }
 
   &.national-emergency {
-    background-color: $red;
+    background-color: govuk-colour("red");
   }
 
   &.local-emergency {
-    background-color: $turquoise;
+    background-color: govuk-colour("turquoise");
   }
 }

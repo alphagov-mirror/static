@@ -27,4 +27,8 @@ Rails.application.config.assets.precompile += %w[
   static-print.css
   error-page.css
   error-page-print.css
+  application.css
+  application-ie8.css
+  application-print.css
+  print.css
 ]

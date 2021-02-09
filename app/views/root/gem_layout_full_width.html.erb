@@ -1,0 +1,7 @@
+<%
+  global_bar_content = render "notifications/global_bar"
+%>
+<%= render "govuk_publishing_components/components/layout_for_public", {
+  full_width: true,
+  global_bar: global_bar_content,
+} %>

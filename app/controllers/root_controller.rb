@@ -12,6 +12,8 @@ class RootController < ApplicationController
     print
     proposition_menu
     homepage
+    gem_layout
+    gem_layout_full_width
   ].freeze
   def template
     if NON_LAYOUT_TEMPLATES.include?(params[:template])
