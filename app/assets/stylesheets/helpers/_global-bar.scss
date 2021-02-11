@@ -4,9 +4,10 @@ $covid-grey: #262828;
 .global-bar {
   @include govuk-font(19);
   background-color: govuk-colour("black");
-  border-top: govuk-spacing(2) solid govuk-colour("blue");
   border-bottom: 1px solid govuk-colour("white");
+  border-top: govuk-spacing(2) solid $govuk-brand-colour;
   display: none;
+  margin-top: 0 - govuk-spacing(2);
 
   .show-global-bar & {
     display: block;
