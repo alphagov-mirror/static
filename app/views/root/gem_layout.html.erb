@@ -1,6 +1,10 @@
 <%
-  global_bar_content = render "notifications/global_bar"
+  if @emergency_banner then
+    emergency_banner_content = render("notifications/emergency_banner", banner: @emergency_banner)
+  end
+  global_bar_content = render("notifications/global_bar")
 %>
 <%= render "govuk_publishing_components/components/layout_for_public", {
   global_bar: global_bar_content,
+  emergency_banner: emergency_banner_content,
 } %>
